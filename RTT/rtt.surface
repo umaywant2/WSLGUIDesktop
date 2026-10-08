@@ -1,1 +1,13 @@
+surface=operator
+model=WSLGUIDesktop-RTT
+
+entrypoints:
+  - op=wsl-bootstrap
+    intent="Prepare WSL + GUI stack for daily driver use"
+
+  - op=gui-session
+    intent="Launch or repair GUI session for current user"
+
+  - op=goes-16
+    intent="Run GOES-16 workflow inside daily driver environment"
 
