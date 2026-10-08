@@ -1,0 +1,26 @@
+drift-map: xnow
+model: WSLGUIDesktop-RTT
+
+drift.classes:
+  - id=dbus-session
+    description=DBus session not present or degraded
+    detection:
+      - check: pgrep dbus-daemon
+        expect: present
+    mitigation: operators/op.fix-dbus.sh
+
+  - id=gui-stack
+    description=GUI stack partially present or misconfigured
+    detection:
+      - check: echo $DISPLAY
+        expect: non-empty
+      - check: test -x "$(command -v startxfce4)"
+        expect: true
+    mitigation: operators/op.gui-session.sh
+
+  - id=display-mode
+    description=WSLg vs external X server mismatch
+    detection:
+      - check: test -e /mnt/wslg
+        expect: true|false
+    mitigation: operators/op.display-detect.sh
