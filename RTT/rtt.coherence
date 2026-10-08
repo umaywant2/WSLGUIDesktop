@@ -1,1 +1,25 @@
+coherence=declared
+model=WSLGUIDesktop-RTT
+scope=host=Windows10+,guest=WSL(Ubuntu 22.04+),gui=WSLg/X11
+mode=daily-driver
+
+coherence.zones:
+  - zone=bootstrap
+    guarantees:
+      - wsl-distribution-present
+      - base-packages-installed
+      - gui-stack-configured
+
+  - zone=gui-session
+    guarantees:
+      - user-session-launchable
+      - dbus-stable
+      - display-server-available
+
+  - zone=workdesk
+    guarantees:
+      - editor-available
+      - browser-available
+      - terminal-available
+      - goes-16-pipeline-optional
 
