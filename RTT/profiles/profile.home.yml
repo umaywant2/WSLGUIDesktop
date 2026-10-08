@@ -1,1 +1,26 @@
+profile: home
+model: WSLGUIDesktop-RTT
+
+intent:
+  description: "Home-use daily driver with relaxed drift bounds and flexible GUI mode."
+
+selectors:
+  - id=prefer-wslg
+    when:
+      - test -e /mnt/wslg
+    operator: operators/op.xnow.sh
+
+  - id=prefer-x11
+    when:
+      - test ! -e /mnt/wslg
+    operator: operators/op.xnow.sh
+
+tools:
+  editor: mousepad
+  terminal: xfce4-terminal
+  browser: firefox
+
+expectations:
+  - gui-session reachable in ≤ 3 hops
+  - drift repair optional
 
