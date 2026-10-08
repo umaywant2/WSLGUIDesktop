@@ -9,10 +9,13 @@
 
 set -euo pipefail
 
-echo "[goes-16] starting GOES-16 workflow"
+echo "[goes-16] entering GOES-16 workflow"
 
-# Pull data, process imagery, display results in GUI
-# ...
+cd /home/donofrio/Pictures
+rm ./5424*.*
 
-echo "[goes-16] workflow=complete"
+wget https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/5424x5424.jpg
 
+cd ..
+
+echo "[goes-16] workflow=complete image=5424x5424.jpg"
