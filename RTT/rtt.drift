@@ -1,1 +1,19 @@
+drift=bounded
+model=WSLGUIDesktop-RTT
+
+drift.classes:
+  - id=env-version
+    description=Ubuntu/WSL/Windows versions diverge from baseline
+    bound=soft
+    mitigation=operators/op.wsl-bootstrap.sh --reconcile
+
+  - id=dbus-session
+    description=DBus/X11 session state inconsistent
+    bound=hard
+    mitigation=operators/op.fix-dbus.sh --pulse
+
+  - id=gui-stack
+    description=GUI stack (WSLg/X11) misconfigured or partially present
+    bound=soft
+    mitigation=operators/op.gui-session.sh --repair
 
