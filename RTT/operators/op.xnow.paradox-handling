@@ -1,0 +1,25 @@
+paradox-handling: xnow
+model: WSLGUIDesktop-RTT
+
+paradox.classes:
+  - id=dual-display
+    description=WSLg and external X server both active
+    detection:
+      - check: test -e /mnt/wslg
+        expect: true
+      - check: pgrep Xorg
+        expect: present
+    handling:
+      - prefer: WSLg
+      - action: disable-external-x
+      - surface: gui-session-status
+
+  - id=dual-session
+    description=Multiple GUI sessions competing (xfce4-session + gnome-session)
+    detection:
+      - check: pgrep xfce4-session
+      - check: pgrep gnome-session
+    handling:
+      - allow: true
+      - mark: spectral
+      - require: user-choice
