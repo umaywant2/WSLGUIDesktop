@@ -1,0 +1,31 @@
+clarity-surface: gui-stack
+model: WSLGUIDesktop-RTT
+
+signals:
+  - id=display-mode
+    channel=terminal
+    values:
+      - wslg
+      - x11
+      - unknown
+
+  - id=dbus-state
+    channel=terminal
+    values:
+      - ok
+      - degraded
+      - absent
+
+  - id=gui-stack-state
+    channel=terminal
+    values:
+      - ready
+      - partial
+      - broken
+
+  - id=session-launch
+    channel=terminal
+    values:
+      - xfce
+      - gnome
+      - none
