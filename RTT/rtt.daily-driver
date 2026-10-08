@@ -1,1 +1,19 @@
+daily-driver.canon:
+  identity:
+    description="A WSL-based Linux desktop living inside Windows, tuned for workdesk use."
+    baseline:
+      host=Windows10+
+      guest=Ubuntu 22.04+
+      gui=WSLg or X11
+
+  expectations:
+    - editor always reachable within 2 hops (terminal → editor)
+    - browser always reachable within 2 hops (terminal → browser)
+    - terminal always reachable from Windows Start or taskbar
+    - GUI session repairable via single operator call
+
+  non-goals:
+    - not a general-purpose Linux distribution manager
+    - not a full-blown container orchestration system
+    - not a security-hardening toolkit
 
