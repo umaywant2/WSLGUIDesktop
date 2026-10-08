@@ -1,1 +1,32 @@
+profile: workdesk
+model: WSLGUIDesktop-RTT
+
+intent:
+  description: "Work-focused daily driver with stable GUI, editor, browser, and RTT operators."
+
+selectors:
+  - id=prefer-wslg
+    when:
+      - test -e /mnt/wslg
+    operator: operators/op.xnow.sh
+
+  - id=repair-dbus
+    when:
+      - pgrep dbus-daemon == ""
+    operator: operators/op.fix-dbus.sh
+
+  - id=repair-display
+    when:
+      - echo $DISPLAY == ""
+    operator: operators/op.display-detect.sh
+
+tools:
+  editor: code
+  terminal: gnome-terminal
+  browser: firefox
+
+expectations:
+  - gui-session reachable in ≤ 2 hops
+  - editor reachable in ≤ 1 hop
+  - dbus-session repairable in ≤ 1 hop
 
