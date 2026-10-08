@@ -1,1 +1,6 @@
+packages:
+  - git
+  - vscode
+  - firefox
+  - 7zip
 
