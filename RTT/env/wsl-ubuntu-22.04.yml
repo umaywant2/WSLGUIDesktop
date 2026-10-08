@@ -1,1 +1,14 @@
+distribution: Ubuntu-22.04
+packages:
+  base:
+    - build-essential
+    - git
+    - curl
+    - wget
+    - python3
+    - python3-pip
+  gui:
+    - x11-apps
+    - fonts-dejavu
+    - gnome-terminal
 
