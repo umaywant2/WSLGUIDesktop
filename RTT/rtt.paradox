@@ -1,1 +1,16 @@
+paradox=structural
+model=WSLGUIDesktop-RTT
+
+paradox.classes:
+  - id=dual-display
+    description=WSLg vs external X server both active
+    handling=prefer-wslg, warn-user, disable-external-x
+
+  - id=dual-desktop
+    description=Windows-native IDE vs WSL IDE competing for same project
+    handling=allow, mark-as-spectral, no-automatic-resolution
+
+  - id=network-visibility
+    description=host vs guest network tools disagree on state
+    handling=do-not-resolve, surface-to-user, require-operator-choice
 
