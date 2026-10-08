@@ -1,4 +1,4 @@
-# WSLGUIDesktop-RTT
+# WSLGUIDesktop/RTT
 
 ## Overview
 
