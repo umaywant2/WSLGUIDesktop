@@ -1,1 +1,37 @@
+env: gui-stack
+model: WSLGUIDesktop-RTT
+
+display:
+  modes:
+    - wslg
+    - x11
+  detection:
+    - test -e /mnt/wslg
+    - echo $DISPLAY
+
+components:
+  dbus:
+    required: true
+    services:
+      - dbus
+      - cron
+
+  desktop:
+    default: xfce4
+    alternatives:
+      - gnome
+      - mate
+
+packages:
+  apt:
+    - x11-apps
+    - xfce4
+    - dbus-x11
+    - fonts-dejavu
+
+coherence:
+  guarantees:
+    - dbus-session present
+    - display-mode coherent
+    - desktop-session launchable
 
