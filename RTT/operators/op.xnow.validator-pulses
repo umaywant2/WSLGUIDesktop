@@ -1,0 +1,20 @@
+validator-pulses: xnow
+model: WSLGUIDesktop-RTT
+
+pulse.interval: 200ms
+
+pulses:
+  - id=dbus-ready
+    check: pgrep dbus-daemon
+    expect: present
+    on-fail: drift(dbus-session)
+
+  - id=display-ready
+    check: echo $DISPLAY
+    expect: non-empty
+    on-fail: drift(gui-stack)
+
+  - id=xfce-ready
+    check: pgrep xfce4-session
+    expect: present
+    on-fail: surface(gui-session-status)
