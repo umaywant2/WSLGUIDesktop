@@ -1,1 +1,26 @@
+clarity=spectral
+model=WSLGUIDesktop-RTT
+
+clarity.surfaces:
+  - id=bootstrap-status
+    channel=terminal
+    signals:
+      - phase=detect-env
+      - phase=install-packages
+      - phase=configure-gui
+      - phase=final-check
+
+  - id=gui-session-status
+    channel=terminal
+    signals:
+      - dbus=ok|degraded
+      - display=:0|wayland
+      - compositor=present|absent
+
+  - id=daily-driver-profile
+    channel=text
+    signals:
+      - profile=workdesk|home
+      - editor=code|vim|emacs
+      - browser=edge|firefox|chrome
 
