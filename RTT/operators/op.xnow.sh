@@ -14,10 +14,17 @@ echo "[xnow] preparing GUI session"
 export NO_AT_BRIDGE=1
 
 echo "[xnow] starting dbus-run-session"
-exec dbus-run-session -- bash
+dbus-run-session -- bash -c "
+  echo '[xnow] dbus session active'
+"
 
-# Note: lines below match original script; with `exec` above,
-# they will only run if `exec` is removed or refactored.
+echo "[xnow] starting cron service"
 sudo service cron start
+
+echo "[xnow] starting dbus service"
 sudo service dbus start
+
+echo "[xnow] launching XFCE desktop"
 startxfce4
+
+echo "[xnow] gui-session=ready coherence=ok"
