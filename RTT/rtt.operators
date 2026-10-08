@@ -1,1 +1,30 @@
+operators:
+  - name=wsl-bootstrap
+    file=operators/op.wsl-bootstrap.sh
+    coherence.zone=bootstrap
+    drift.class=env-version
+    paradox.class=dual-display
+    clarity.surface=bootstrap-status
+
+  - name=gui-session
+    file=operators/op.gui-session.sh
+    coherence.zone=gui-session
+    drift.class=dbus-session
+    paradox.class=dual-display
+    clarity.surface=gui-session-status
+
+  - name=fix-dbus
+    file=operators/op.fix-dbus.sh
+    coherence.zone=gui-session
+    drift.class=dbus-session
+
+  - name=xnow
+    file=operators/op.xnow.sh
+    coherence.zone=gui-session
+    drift.class=gui-stack
+
+  - name=goes-16
+    file=operators/op.goes-16.sh
+    coherence.zone=workdesk
+    drift.class=env-version
 
