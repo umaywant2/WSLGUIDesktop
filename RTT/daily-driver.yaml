@@ -1,0 +1,31 @@
+profile: daily-driver
+model: WSLGUIDesktop-RTT
+
+intent:
+  description: "Automatically choose correct GUI operator based on environment."
+
+selectors:
+  - id=prefer-wslg
+    when:
+      - test -e /mnt/wslg
+    operator: operators/op.xnow.sh
+
+  - id=prefer-x11
+    when:
+      - test ! -e /mnt/wslg
+    operator: operators/op.xnow.sh
+
+  - id=repair-gui
+    when:
+      - pgrep dbus-daemon == ""
+    operator: operators/op.fix-dbus.sh
+
+  - id=repair-display
+    when:
+      - echo $DISPLAY == ""
+    operator: operators/op.display-detect.sh
+
+expectations:
+  - gui-session reachable in ≤ 2 hops
+  - dbus-session repairable in ≤ 1 hop
+  - display-mode coherent before XFCE launch
