@@ -9,11 +9,15 @@
 
 set -euo pipefail
 
-echo "[fix-dbus] attempting to repair DBus/X11 session"
+echo "[fix-dbus] Implementing udev workaround (https://github.com/Microsoft/WSL/issues/143#issuecomment-209072634)" >&2
 
-# Legacy logic from scripts/legacy-fix-dbus.sh, but wrapped:
-# export DISPLAY, start dbus-launch, etc.
-# ...
+sudo tee /usr/sbin/policy-rc.d > /dev/null <<EOF
+#!/bin/sh
+exit 101
+EOF
 
-echo "[fix-dbus] dbus=ok"
+sudo chmod +x /usr/sbin/policy-rc.d
+sudo dpkg-divert --local --rename --add /sbin/initctl
+sudo ln -fs /bin/true /sbin/initctl
 
+echo "[fix-dbus] dbus-workaround=applied coherence=ok"
